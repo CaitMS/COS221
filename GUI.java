@@ -70,7 +70,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        reportTable = new javax.swing.JTable();
         Notifications = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -339,7 +339,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel4.setText("Report");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        reportTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -358,7 +358,7 @@ public class GUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(reportTable);
 
         javax.swing.GroupLayout ReportLayout = new javax.swing.GroupLayout(Report);
         Report.setLayout(ReportLayout);
@@ -512,6 +512,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btn_ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportActionPerformed
         if (!display.equals("Report")) {
+            setReportTable();
             display = "Report";
             MainPage.removeAll();
             MainPage.add(Report);
@@ -659,9 +660,7 @@ public class GUI extends javax.swing.JFrame {
     }
     
     private void setFilmsTable() {
-
         String query = "SELECT * FROM film";
-
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
@@ -677,13 +676,32 @@ public class GUI extends javax.swing.JFrame {
                     rs.getFloat("rental_rate"), rs.getInt("length"),
                     rs.getFloat("replacement_cost"), rs.getString("rating"),
                     rs.getString("special_features"), rs.getTimestamp("last_update")});
-
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
+    
+    private void setReportTable() {
+        String query = "SELECT s.store_id, c.name AS genre_name, COUNT(DISTINCT i.film_id) AS num_movies " 
+                        +"FROM inventory AS i "        
+                        + "INNER JOIN film_category AS fc ON i.film_id = fc.film_id " 
+                        + "INNER JOIN category c ON fc.category_id = c.category_id " 
+                        + "INNER JOIN store AS s ON i.store_id = s.store_id " 
+                        + "GROUP BY s.store_id, c.name;";
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getInt("store_id"), rs.getString("genre_name"), rs.getInt("num_movies")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -754,9 +772,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFilterError;
     private javax.swing.JLabel lblNoResults;
+    private javax.swing.JTable reportTable;
     private javax.swing.JTextField txtFilter;
     // End of variables declaration//GEN-END:variables
 }
