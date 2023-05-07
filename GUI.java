@@ -543,7 +543,7 @@ public class GUI extends javax.swing.JFrame {
         insertGui.setVisible(true);
         
         insertGui.addWindowListener(new java.awt.event.WindowAdapter() { 
-            public void windowClosing(java.awt.event.WindowEvent windowEvent)
+            public void windowClosed(java.awt.event.WindowEvent windowEvent)
             {
                 setFilmsTable();
      
@@ -611,7 +611,7 @@ public class GUI extends javax.swing.JFrame {
                     model.addRow(new Object[]{rs.getString("first_name"),
                         rs.getString("last_name"), rs.getString("address"),
                         rs.getString("address2"), rs.getString("district"),
-                        rs.getString("city"), rs.getString("phone"),
+                        rs.getString("city"), rs.getString("postal_code"), rs.getString("phone"),
                         rs.getInt("store_id"), rs.getInt("active")});
 
                 }
@@ -647,7 +647,7 @@ public class GUI extends javax.swing.JFrame {
                 model.addRow(new Object[]{rs.getString("first_name"),
                     rs.getString("last_name"), rs.getString("address"),
                     rs.getString("address2"), rs.getString("district"),
-                    rs.getString("city"), rs.getString("phone"),
+                    rs.getString("city"), rs.getString("postal_code"), rs.getString("phone"),
                     rs.getInt("store_id"), rs.getInt("active")});
 
             }
