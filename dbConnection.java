@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import com.mysql.cj.protocol.Protocol;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,12 +14,20 @@ import java.sql.SQLException;
  * @author caity
  */
 public class dbConnection {
-
+    
+    
     public static Connection connect()
     {
-        String url = "jdbc:mysql://localhost:3306/u22608495_sakila";
-        String username = "root";
-        String password = "MDB4COS221";
+        String protocol = System.getenv("dvdrental_DB_PROTO");
+        String host = System.getenv("dvdrental_DB_HOST");
+        String port = System.getenv("dvdrental_DB_PORT");
+        String name = System.getenv("dvdrental_DB_NAME");
+        String username = System.getenv("dvdrental_DB_USERNAME");
+        String password = System.getenv("dvdrental_DB_PASSWORD");
+        
+        String url = protocol+host+":"+port+"/"+name;
+        //String username = "root";
+        //String password = "MDB4COS221";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, username, password);

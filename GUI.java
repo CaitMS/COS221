@@ -827,7 +827,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel15.setText("Update Client");
+        jLabel15.setText("Insert Client");
 
         jLabel16.setText("First Name:");
 
