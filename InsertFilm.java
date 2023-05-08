@@ -459,7 +459,6 @@ public class InsertFilm extends javax.swing.JFrame {
                     + Double.valueOf(txtReplacement.getText()) + "', '"
                     + (String)cbRating.getSelectedItem() + "', '" 
                     + specialFeatures + "' , '" + timeStamp + "')";
-                System.out.println(query);
             stmt = conn.createStatement();
             stmt.executeUpdate(query);
             this.dispose();

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -28,12 +29,13 @@ public class GUI extends javax.swing.JFrame {
     ResultSet rs = null;
 
     public GUI() {
-        
+
         initComponents();
         setLocationRelativeTo(null);
         //JFrame.setPreferredSize(new Dimension(400,800));
         conn = dbConnection.connect();
         setStaffTable();
+
     }
 
     /**
@@ -105,6 +107,20 @@ public class GUI extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         spinStoreID = new javax.swing.JSpinner();
         jButton6 = new javax.swing.JButton();
+        InsertClient = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtFN1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtLN1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txtEmail1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        spinAdd1 = new javax.swing.JSpinner();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        spinStoreID1 = new javax.swing.JSpinner();
+        jButton11 = new javax.swing.JButton();
 
         jButton10.setText("Refresh Table");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -800,12 +816,131 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(spinAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateClientLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         MainPage.add(UpdateClient, "card7");
+
+        InsertClient.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel15.setText("Update Client");
+
+        jLabel16.setText("First Name:");
+
+        txtFN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFN1ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Last Name:");
+
+        txtLN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLN1ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Email:");
+
+        txtEmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmail1ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Address ID:");
+
+        jLabel21.setText("Store ID:");
+
+        jButton11.setBackground(new java.awt.Color(51, 153, 255));
+        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton11.setText("Insert Client");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout InsertClientLayout = new javax.swing.GroupLayout(InsertClient);
+        InsertClient.setLayout(InsertClientLayout);
+        InsertClientLayout.setHorizontalGroup(
+            InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InsertClientLayout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(InsertClientLayout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtLN1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(InsertClientLayout.createSequentialGroup()
+                            .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel21))
+                            .addGap(44, 44, 44)
+                            .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(spinStoreID1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFN1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(InsertClientLayout.createSequentialGroup()
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19))
+                        .addGap(42, 42, 42)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spinAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(302, 302, 302))
+            .addGroup(InsertClientLayout.createSequentialGroup()
+                .addGap(487, 487, 487)
+                .addComponent(jLabel15)
+                .addGap(294, 294, 294))
+        );
+        InsertClientLayout.setVerticalGroup(
+            InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InsertClientLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel15)
+                .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InsertClientLayout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(jLabel20))
+                    .addGroup(InsertClientLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(spinStoreID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtFN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtLN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(InsertClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(spinAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InsertClientLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(201, Short.MAX_VALUE))
+        );
+
+        MainPage.add(InsertClient, "card7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -839,6 +974,7 @@ public class GUI extends javax.swing.JFrame {
             MainPage.add(Staff);
             MainPage.repaint();
             MainPage.revalidate();
+
         }
 
     }//GEN-LAST:event_btn_StaffActionPerformed
@@ -892,36 +1028,30 @@ public class GUI extends javax.swing.JFrame {
         insertGui.setLocationRelativeTo(null);
 
         insertGui.setVisible(true);
-        
-        insertGui.addWindowListener(new java.awt.event.WindowAdapter() { 
-            public void windowClosed(java.awt.event.WindowEvent windowEvent)
-            {
+
+        insertGui.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                 setFilmsTable();
-     
+
             }
-            
+
         });
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(client.equals("dropped"))
-        {
+        if (client.equals("dropped")) {
             JOptionPane.showMessageDialog(null, "Cannot update dropped clients");
-        }
-        if(Notif_Table.getSelectionModel().isSelectionEmpty())
-        {
+        } else if (Notif_Table.getSelectionModel().isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select a row to update");
-        }
-        else
-        {
-            if (!display.equals("Update")) {
-                setUpdateValues();
-                display = "Update";
-                MainPage.removeAll();
-                MainPage.add(UpdateClient);
-                MainPage.repaint();
-                MainPage.revalidate();
-            }
+        } else {
+            //if (!display.equals("Update")) {
+            setUpdateValues();
+            display = "Update";
+            MainPage.removeAll();
+            MainPage.add(UpdateClient);
+            MainPage.repaint();
+            MainPage.revalidate();
+            //}
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1011,24 +1141,18 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(client.equals("dropped"))
-        {
+        if (client.equals("dropped")) {
             JOptionPane.showMessageDialog(null, "This client is already dropped");
-        }
-        if(Notif_Table.getSelectionModel().isSelectionEmpty())
-        {
+        } else if (Notif_Table.getSelectionModel().isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select a row to delete");
-        }
-        else
-        {
+        } else {
             int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record", "Confirm", JOptionPane.YES_NO_OPTION);
-            if(confirm == JOptionPane.YES_OPTION)
-            {
+            if (confirm == JOptionPane.YES_OPTION) {
                 int row = Notif_Table.getSelectedRow();
                 int id = (int) Notif_Table.getValueAt(row, 0);
-                
-                String query = "UPDATE customer SET active=0 WHERE customer_id = "+id;
-                
+
+                String query = "UPDATE customer SET active=0 WHERE customer_id = " + id;
+
                 try {
                     stmt = conn.createStatement();
                     stmt.executeUpdate(query);
@@ -1038,7 +1162,7 @@ public class GUI extends javax.swing.JFrame {
                 }
             }
         }
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_ClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientsActionPerformed
@@ -1053,7 +1177,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ClientsActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        display = "Insert";
+        MainPage.removeAll();
+        MainPage.add(InsertClient);
+        MainPage.repaint();
+        MainPage.revalidate();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtFilter2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFilter2MouseClicked
@@ -1068,9 +1196,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFilter2ActionPerformed
 
     private void txtFilter2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilter2KeyPressed
-        
-                                 
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtFilter2KeyPressed
 
     private void txtFilter2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilter2KeyReleased
@@ -1098,7 +1224,6 @@ public class GUI extends javax.swing.JFrame {
                 }
 
                 int it = 0;
-
                 while (rs.next()) {
                     it++;
                     model.addRow(new Object[]{rs.getInt("customer_id"),
@@ -1111,7 +1236,6 @@ public class GUI extends javax.swing.JFrame {
                     lblNoResults2.setForeground(Color.red);
                     lblNoResults2.setText("No results");
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1141,6 +1265,22 @@ public class GUI extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         updateClient();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void txtFN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFN1ActionPerformed
+
+    private void txtLN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLN1ActionPerformed
+
+    private void txtEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmail1ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        insertClient();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void setStaffTable() {
 
@@ -1172,7 +1312,7 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void setFilmsTable() {
         String query = "SELECT * FROM film";
         try {
@@ -1184,8 +1324,8 @@ public class GUI extends javax.swing.JFrame {
             }
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getInt("film_id"),
-                    rs.getString("title"), rs.getString("description"), 
-                    rs.getDate("release_year"), rs.getInt("language_id"), 
+                    rs.getString("title"), rs.getString("description"),
+                    rs.getDate("release_year"), rs.getInt("language_id"),
                     rs.getInt("original_language_id"), rs.getInt("rental_duration"),
                     rs.getFloat("rental_rate"), rs.getInt("length"),
                     rs.getFloat("replacement_cost"), rs.getString("rating"),
@@ -1195,14 +1335,14 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void setReportTable() {
-        String query = "SELECT s.store_id, c.name AS genre_name, COUNT(DISTINCT i.film_id) AS num_movies " 
-                        +"FROM inventory AS i "        
-                        + "INNER JOIN film_category AS fc ON i.film_id = fc.film_id " 
-                        + "INNER JOIN category c ON fc.category_id = c.category_id " 
-                        + "INNER JOIN store AS s ON i.store_id = s.store_id " 
-                        + "GROUP BY s.store_id, c.name;";
+        String query = "SELECT s.store_id, c.name AS genre_name, COUNT(DISTINCT i.film_id) AS num_movies "
+                + "FROM inventory AS i "
+                + "INNER JOIN film_category AS fc ON i.film_id = fc.film_id "
+                + "INNER JOIN category c ON fc.category_id = c.category_id "
+                + "INNER JOIN store AS s ON i.store_id = s.store_id "
+                + "GROUP BY s.store_id, c.name;";
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
@@ -1217,9 +1357,8 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void setAllClients()
-    {
+
+    private void setAllClients() {
         String query = "SELECT *"
                 + " FROM customer";
 
@@ -1242,9 +1381,8 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void setCurrentClients()
-    {
+
+    private void setCurrentClients() {
         String query = "SELECT *"
                 + " FROM customer"
                 + " WHERE active = 1";
@@ -1268,9 +1406,8 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void setDroppedClients()
-    {
+
+    private void setDroppedClients() {
         String query = "SELECT *"
                 + " FROM customer"
                 + " WHERE active = 0";
@@ -1294,57 +1431,85 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void setUpdateValues()
-    {
-        setAllClients();
-        System.out.println(Notif_Table.getSelectedRow());
-        spinStoreID.setValue((int) Client_Table.getValueAt(Notif_Table.getSelectedRow(), 1));
-        txtFN.setText((String) Client_Table.getValueAt(Notif_Table.getSelectedRow(), 2));
-        txtLN.setText((String)Client_Table.getValueAt(Notif_Table.getSelectedRow(), 3));
-        txtEmail.setText((String)Client_Table.getValueAt(Notif_Table.getSelectedRow(), 4));
-        spinAdd.setValue((int) Client_Table.getValueAt(Notif_Table.getSelectedRow(), 5));
-        
-        
-        
-        
+
+    private void setUpdateValues() {
+        spinStoreID.setValue((int) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 1));
+        txtFN.setText((String) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 2));
+        txtLN.setText((String) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 3));
+        txtEmail.setText((String) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 4));
+        spinAdd.setValue((int) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 5));
+
     }
-    
-    private void updateClient()
-    {
-        setAllClients();
-        int store = (int)spinStoreID.getValue();
+
+    private void updateClient() {
+        int store = (int) spinStoreID.getValue();
         String fn = txtFN.getText();
         String ln = txtLN.getText();
         String email = txtEmail.getText();
         int add = (int) spinAdd.getValue();
-        int id = (int) Client_Table.getValueAt(Notif_Table.getSelectedRow(), 0);
-        
+        int id = (int) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 0);
+
         //Validate
-        String query = "UPDATE customer SET store_id="+store
-                + ", first_name='"+fn.toUpperCase()+"'"
-                + ", last_name='"+ln.toUpperCase()+"'"
-                + ", email='"+ email +"'"
-                + ", address_id="+add
-                + " WHERE customer_id = "+id;
-                
-                try {
-                    stmt = conn.createStatement();
-                    stmt.executeUpdate(query);
-                    if (!display.equals("Notif")) {
-                        setCurrentClients();
-                        display = "Notif";
-                        MainPage.removeAll();
-                        MainPage.add(Notifications);
-                        MainPage.repaint();
-                        MainPage.revalidate();
-                    }
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        String query = "UPDATE customer SET store_id=" + store
+                + ", first_name='" + fn.toUpperCase() + "'"
+                + ", last_name='" + ln.toUpperCase() + "'"
+                + ", email='" + email + "'"
+                + ", address_id=" + add
+                + " WHERE customer_id = " + id;
+
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+            if (!display.equals("Notif")) {
+                setCurrentClients();
+                display = "Notif";
+                MainPage.removeAll();
+                MainPage.add(Notifications);
+                MainPage.repaint();
+                MainPage.revalidate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
+
+    private void insertClient() {
+        int store = (int) spinStoreID1.getValue();
+        String fn = txtFN1.getText();
+        String ln = txtLN1.getText();
+        String email = txtEmail1.getText();
+        int add = (int) spinAdd1.getValue();
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        //Validate
+        int nextID = 1;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1");
+            while (rs.next()) {
+                nextID = rs.getInt("customer_id") + 1;
+            }
+
+            String query = "INSERT INTO customer VALUES(" + nextID + ", " + store
+                    + ", '" + fn.toUpperCase() + "', '" + ln.toUpperCase() + "', '"
+                    + email + "', " + add + ", " + 1 + ", '" + timeStamp + "', '"
+                    + timeStamp + "')";
+            stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+            if (!display.equals("Notif")) {
+                setCurrentClients();
+                display = "Notif";
+                MainPage.removeAll();
+                MainPage.add(Notifications);
+                MainPage.repaint();
+                MainPage.revalidate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1387,6 +1552,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel Clients;
     private javax.swing.JTable Film_Table;
     private javax.swing.JPanel Films;
+    private javax.swing.JPanel InsertClient;
     private javax.swing.JPanel MainPage;
     private javax.swing.JPanel Menu;
     private javax.swing.JTable Notif_Table;
@@ -1404,6 +1570,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> filterBox2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1418,7 +1585,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1437,11 +1611,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNoResults2;
     private javax.swing.JTable reportTable;
     private javax.swing.JSpinner spinAdd;
+    private javax.swing.JSpinner spinAdd1;
     private javax.swing.JSpinner spinStoreID;
+    private javax.swing.JSpinner spinStoreID1;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtFN;
+    private javax.swing.JTextField txtFN1;
     private javax.swing.JTextField txtFilter;
     private javax.swing.JTextField txtFilter2;
     private javax.swing.JTextField txtLN;
+    private javax.swing.JTextField txtLN1;
     // End of variables declaration//GEN-END:variables
 }
