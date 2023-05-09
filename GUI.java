@@ -328,10 +328,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(lblFilterError, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(StaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(filterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7)))
+                        .addGroup(StaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(StaffLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(filterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StaffLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNoResults, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -816,7 +817,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(spinAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateClientLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(205, Short.MAX_VALUE))
         );
@@ -1448,31 +1449,72 @@ public class GUI extends javax.swing.JFrame {
         String email = txtEmail.getText();
         int add = (int) spinAdd.getValue();
         int id = (int) Notif_Table.getValueAt(Notif_Table.getSelectedRow(), 0);
-
+        
+        boolean flag = true;
         //Validate
-        String query = "UPDATE customer SET store_id=" + store
-                + ", first_name='" + fn.toUpperCase() + "'"
-                + ", last_name='" + ln.toUpperCase() + "'"
-                + ", email='" + email + "'"
-                + ", address_id=" + add
-                + " WHERE customer_id = " + id;
-
-        try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-            if (!display.equals("Notif")) {
-                setCurrentClients();
-                display = "Notif";
-                MainPage.removeAll();
-                MainPage.add(Notifications);
-                MainPage.repaint();
-                MainPage.revalidate();
+        while(true){
+            if(store == 0)
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a store id");
+                break;
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            if(fn.equals(""))
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a first name");
+                break;
+            }
+            if(ln.equals(""))
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a last name");
+                break;
+            }
+//            if(email.equals(""))
+//            {
+//                flag = false;
+//                JOptionPane.showMessageDialog(null, "Please enter a email");
+//                break;
+//            }
+            if(add == 0)
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a address id");
+                break;
+            } 
+            break;
         }
+        
+        if(flag)
+        {
+            System.out.println("1");
+            String query = "UPDATE customer SET store_id=" + store
+                    + ", first_name='" + fn.toUpperCase() + "'"
+                    + ", last_name='" + ln.toUpperCase() + "'"
+                    + ", email='" + email + "'"
+                    + ", address_id=" + add
+                    + " WHERE customer_id = " + id;
 
+            try {
+                System.out.println("2");
+                stmt = conn.createStatement();
+                stmt.executeUpdate(query);
+                if (!display.equals("Notif")) {
+                    setCurrentClients();
+                    display = "Notif";
+                    MainPage.removeAll();
+                    MainPage.add(Notifications);
+                    MainPage.repaint();
+                    MainPage.revalidate();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
+        
     }
 
     private void insertClient() {
@@ -1483,31 +1525,71 @@ public class GUI extends javax.swing.JFrame {
         int add = (int) spinAdd1.getValue();
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
         //Validate
-        int nextID = 1;
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1");
-            while (rs.next()) {
-                nextID = rs.getInt("customer_id") + 1;
+        boolean flag = true;
+        //Validate
+        while(true){
+            if(store != 1 && store != 2)
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a valid store id");
+                break;
             }
-
-            String query = "INSERT INTO customer VALUES(" + nextID + ", " + store
-                    + ", '" + fn.toUpperCase() + "', '" + ln.toUpperCase() + "', '"
-                    + email + "', " + add + ", " + 1 + ", '" + timeStamp + "', '"
-                    + timeStamp + "')";
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-            if (!display.equals("Notif")) {
-                setCurrentClients();
-                display = "Notif";
-                MainPage.removeAll();
-                MainPage.add(Notifications);
-                MainPage.repaint();
-                MainPage.revalidate();
+            if(fn.equals(""))
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a first name");
+                break;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            if(ln.equals(""))
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter a last name");
+                break;
+            }
+//            if(email.equals(""))
+//            {
+//                flag = false;
+//                JOptionPane.showMessageDialog(null, "Please enter a email");
+//                break;
+//            }
+            if(add < 1 || add > 605)
+            {
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Please enter valid address id");
+                break;
+            } 
+            break;
         }
+        
+        if(flag)
+        {
+            int nextID = 1;
+            try {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1");
+                while (rs.next()) {
+                    nextID = rs.getInt("customer_id") + 1;
+                }
+
+                String query = "INSERT INTO customer VALUES(" + nextID + ", " + store
+                        + ", '" + fn.toUpperCase() + "', '" + ln.toUpperCase() + "', '"
+                        + email + "', " + add + ", " + 1 + ", '" + timeStamp + "', '"
+                        + timeStamp + "')";
+                stmt = conn.createStatement();
+                stmt.executeUpdate(query);
+                if (!display.equals("Notif")) {
+                    setCurrentClients();
+                    display = "Notif";
+                    MainPage.removeAll();
+                    MainPage.add(Notifications);
+                    MainPage.repaint();
+                    MainPage.revalidate();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }
 
     /**

@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import com.mysql.cj.protocol.Protocol;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
